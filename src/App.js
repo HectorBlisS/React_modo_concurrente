@@ -1,23 +1,20 @@
+import React, {lazy, Suspense} from 'react'
 import logo from './logo.svg';
 import './App.css';
+import ErrorBoundary from './ErrorB'
+import CharList from './Charlist';
+// const Home = lazy(()=>import('./Home')) // pending | success | error
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <ErrorBoundary fallback="Ya valió baby!">
+      <Suspense fallback={<h1>Cargando...</h1>}>
+        <CharList />
+      </Suspense>
+    </ErrorBoundary>
+
     </div>
   );
 }
